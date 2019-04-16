@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">probashiApp</string>
+    <string-array name="roles_array">
+        <item>Probashi</item>
+        <item>Agency</item>
+    </string-array>
+</resources>
