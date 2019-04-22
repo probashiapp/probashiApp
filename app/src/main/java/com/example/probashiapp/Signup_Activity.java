@@ -110,6 +110,7 @@ public class Signup_Activity extends AppCompatActivity implements View.OnClickLi
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(Signup_Activity.this, "SignUp Successful .", Toast.LENGTH_LONG).show();
+
                                     //FirebaseUser user = mAuth.getCurrentUser();
                                     //updateUI(user);
 

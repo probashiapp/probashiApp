@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,6 +28,27 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     private EditText email_et,password_et;
     private Spinner role;
     String Role;
+
+ /*   @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
+        if (currentUser != null) {
+
+                Intent intent = new Intent(Login_Activity.this, Agency_home_activity.class);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                Toast.makeText(this, "User Logged in", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Login_Activity.this, Probashi_Home_Activity.class);
+                startActivity(intent);
+                finish();
+            }
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Probashi_Home_Activity"></activity>
+        <activity android:name=".AdDetails_Activity"></activity>
+        <activity android:name=".ShowJobs_Activity" />
+        <activity android:name=".ContractUpload_Activity" />
+        <activity android:name=".CheckResponses_Activity" />
+        <activity android:name=".Post_ad_Activity" />
+        <activity android:name=".Probashi_Home_Activity" />
         <activity android:name=".Agency_home_activity" />
         <activity android:name=".Signup_Activity" />
         <activity android:name=".Login_Activity">
