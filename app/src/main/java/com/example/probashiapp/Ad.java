@@ -4,12 +4,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Ad implements Parcelable {
-    String title,country,vacancy,job_type,job_security,visa_grade,basic_pay,work_hour,description,agency_id,ad_id,imageurl;
+    String title,country,vacancy,job_type,job_security,visa_grade,basic_pay,work_hour,description,package_price,agency_id,ad_id,imageurl;
 
     public Ad() {
     }
 
-    public Ad(String title, String country, String vacancy, String job_type, String job_security, String visa_grade, String basic_pay, String work_hour, String description, String agency_id, String ad_id, String imageurl) {
+    public Ad(String title, String country, String vacancy, String job_type, String job_security, String visa_grade, String basic_pay, String work_hour, String description, String package_price, String agency_id, String ad_id, String imageurl) {
         this.title = title;
         this.country = country;
         this.vacancy = vacancy;
@@ -19,37 +19,11 @@ public class Ad implements Parcelable {
         this.basic_pay = basic_pay;
         this.work_hour = work_hour;
         this.description = description;
+        this.package_price = package_price;
         this.agency_id = agency_id;
         this.ad_id = ad_id;
         this.imageurl = imageurl;
     }
-
-    protected Ad(Parcel in) {
-        title = in.readString();
-        country = in.readString();
-        vacancy = in.readString();
-        job_type = in.readString();
-        job_security = in.readString();
-        visa_grade = in.readString();
-        basic_pay = in.readString();
-        work_hour = in.readString();
-        description = in.readString();
-        agency_id = in.readString();
-        ad_id = in.readString();
-        imageurl = in.readString();
-    }
-
-    public static final Creator<Ad> CREATOR = new Creator<Ad>() {
-        @Override
-        public Ad createFromParcel(Parcel in) {
-            return new Ad(in);
-        }
-
-        @Override
-        public Ad[] newArray(int size) {
-            return new Ad[size];
-        }
-    };
 
     public String getTitle() {
         return title;
@@ -123,6 +97,14 @@ public class Ad implements Parcelable {
         this.description = description;
     }
 
+    public String getPackage_price() {
+        return package_price;
+    }
+
+    public void setPackage_price(String package_price) {
+        this.package_price = package_price;
+    }
+
     public String getAgency_id() {
         return agency_id;
     }
@@ -147,6 +129,40 @@ public class Ad implements Parcelable {
         this.imageurl = imageurl;
     }
 
+    public static Creator<Ad> getCREATOR() {
+        return CREATOR;
+    }
+
+    protected Ad(Parcel in) {
+        title = in.readString();
+        country = in.readString();
+        vacancy = in.readString();
+        job_type = in.readString();
+        job_security = in.readString();
+        visa_grade = in.readString();
+        basic_pay = in.readString();
+        work_hour = in.readString();
+        description = in.readString();
+        package_price = in.readString();
+        agency_id = in.readString();
+        ad_id = in.readString();
+        imageurl = in.readString();
+    }
+
+    public static final Creator<Ad> CREATOR = new Creator<Ad>() {
+        @Override
+        public Ad createFromParcel(Parcel in) {
+            return new Ad(in);
+        }
+
+        @Override
+        public Ad[] newArray(int size) {
+            return new Ad[size];
+        }
+    };
+
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -163,6 +179,7 @@ public class Ad implements Parcelable {
         parcel.writeString(basic_pay);
         parcel.writeString(work_hour);
         parcel.writeString(description);
+        parcel.writeString(package_price);
         parcel.writeString(agency_id);
         parcel.writeString(ad_id);
         parcel.writeString(imageurl);

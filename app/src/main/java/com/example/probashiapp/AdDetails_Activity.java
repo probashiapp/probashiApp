@@ -11,13 +11,14 @@ public class AdDetails_Activity extends AppCompatActivity {
 
     private TextView title_tv,country_tv,vacancy_tv,jobtype_tv,visagrade_tv,basicpay_tv,workhour_tv,description_tv,jobsecurity_tv;
     private Button seejobcontract_bt;
+    Ad ad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_details_);
 
         Intent intent = getIntent();
-        Ad ad = intent.getParcelableExtra("Ad");
+        ad = intent.getParcelableExtra("Ad");
 
         title_tv = findViewById(R.id.title_tv);
         country_tv = findViewById(R.id.country_tv);
@@ -43,7 +44,8 @@ public class AdDetails_Activity extends AppCompatActivity {
         seejobcontract_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(AdDetails_Activity.this,Probashi_Home_Activity.class);
+                Intent intent1 = new Intent(AdDetails_Activity.this,ShowContract_Activity.class);
+                intent1.putExtra("Ad",ad);
                 startActivity(intent1);
                 finish();
             }

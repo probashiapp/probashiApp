@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdDetails_Activity"></activity>
+        <activity android:name=".ShowContract_Activity"></activity>
+        <activity android:name=".Splash_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdDetails_Activity" />
         <activity android:name=".ShowJobs_Activity" />
         <activity android:name=".ContractUpload_Activity" />
         <activity android:name=".CheckResponses_Activity" />
@@ -17,13 +25,7 @@
         <activity android:name=".Probashi_Home_Activity" />
         <activity android:name=".Agency_home_activity" />
         <activity android:name=".Signup_Activity" />
-        <activity android:name=".Login_Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Login_Activity" />
     </application>
 
 </manifest>

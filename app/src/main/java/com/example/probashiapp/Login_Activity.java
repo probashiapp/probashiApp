@@ -28,26 +28,8 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
     private EditText email_et,password_et;
     private Spinner role;
     String Role;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
- /*   @Override
-    protected void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
-        if (currentUser != null) {
-
-                Intent intent = new Intent(Login_Activity.this, Agency_home_activity.class);
-                startActivity(intent);
-                finish();
-            }
-            else {
-                Toast.makeText(this, "User Logged in", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Login_Activity.this, Probashi_Home_Activity.class);
-                startActivity(intent);
-                finish();
-            }
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,31 +92,46 @@ public class Login_Activity extends AppCompatActivity implements View.OnClickLis
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
-                                Toast.makeText(Login_Activity.this, "Login Successful", Toast.LENGTH_LONG).show();
-                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
 
 
                                 if(Role.equals("Probashi")) {
-                                    db.collection("Agents").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    db.collection("Agents").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                                            Agents agent = documentSnapshot.toObject(Agents.class);
-                                            Intent intent = new Intent(Login_Activity.this, Probashi_Home_Activity.class);
-                                            startActivity(intent);
-                                            finish();
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if(task.isSuccessful()){
+                                                DocumentSnapshot document = task.getResult();
+                                                if (document.exists()) {
+                                                    Intent intent = new Intent(Login_Activity.this,Probashi_Home_Activity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(Login_Activity.this,"User does not exist!",Toast.LENGTH_LONG).show();
+                                                }
+                                            } else {
+                                                Toast.makeText(Login_Activity.this,task.getException().toString(),Toast.LENGTH_LONG).show();
+                                            }
                                         }
                                     });
                                 }
 
-                                if(Role.equals("Agency")) {
-                                    db.collection("Agency").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                else if(Role.equals("Agency")) {
+                                    db.collection("Agency").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            Agency agency = documentSnapshot.toObject(Agency.class);
-                                            Intent intent = new Intent(Login_Activity.this, Agency_home_activity.class);
-                                            startActivity(intent);
-                                            finish();
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if(task.isSuccessful()){
+                                                DocumentSnapshot document = task.getResult();
+                                                if (document.exists()) {
+                                                    Intent intent = new Intent(Login_Activity.this, Agency_home_activity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(Login_Activity.this,"User does not exist!",Toast.LENGTH_LONG).show();
+                                                }
+                                            } else {
+                                                Toast.makeText(Login_Activity.this,task.getException().toString(),Toast.LENGTH_LONG).show();
+                                            }
                                         }
                                     });
                                 }
