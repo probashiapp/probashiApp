@@ -9,8 +9,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/title_tv"
@@ -20,8 +19,8 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Title"
             android:gravity="center"
+            android:text="Title"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +34,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Country"
             android:gravity="center"
+            android:text="Country"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +49,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Vacancy"
             android:gravity="center"
+            android:text="Vacancy"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,8 +64,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Job type"
             android:gravity="center"
+            android:text="Job type"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,8 +79,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Visa Grade"
             android:gravity="center"
+            android:text="Visa Grade"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,8 +94,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Basic Pay"
             android:gravity="center"
+            android:text="Basic Pay"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -110,13 +109,12 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Work Hour"
             android:gravity="center"
+            android:text="Work Hour"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/basic_pay_tv" />
-
 
 
         <TextView
@@ -127,8 +125,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Description"
             android:gravity="center"
+            android:text="Description"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
@@ -143,8 +141,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:text="Job security"
             android:gravity="center"
+            android:text="Job security"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -152,14 +150,14 @@
 
         <Button
             android:id="@+id/seejobcontract_bt"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="See Job Contract"
             android:layout_marginStart="8dp"
             android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
             android:background="#1de9b6"
             android:padding="10dp"
-            android:layout_marginEnd="8dp"
+            android:text="See Job Contract"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
@@ -167,9 +165,22 @@
 
             />
 
+        <Button
+            android:id="@+id/apply_bt"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:background="#1de9b6"
+            android:padding="10dp"
+            android:text="Apply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seejobcontract_bt"
 
-
-
+            />
 
 
     </android.support.constraint.ConstraintLayout>

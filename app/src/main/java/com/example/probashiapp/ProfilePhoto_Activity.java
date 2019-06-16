@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,9 +27,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.util.Calendar;
-
-public class ContractUpload_Activity extends AppCompatActivity {
+public class ProfilePhoto_Activity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
 
     private EditText mEditTextFileName;
@@ -41,27 +38,16 @@ public class ContractUpload_Activity extends AppCompatActivity {
 
     private StorageReference mStorageRef;
     private FirebaseFirestore mDatabaseRef;
-    private DocumentReference newRef;
 
     private StorageTask mUploadTask;
 
     private FirebaseAuth mAuth;
+    Ad ad;
 
-
-
-    Ad newad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contract_upload_);
-
-        Intent intent = getIntent();
-        newad =intent.getParcelableExtra("Ad");
-
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        newRef = db.collection("Ads").document();
-        newad.ad_id = newRef.getId();
 
 
         Button mButtonChooseImage = findViewById(R.id.button_choose_image);
@@ -70,7 +56,7 @@ public class ContractUpload_Activity extends AppCompatActivity {
         mImageView = findViewById(R.id.image_view);
         mProgressBar = findViewById(R.id.progress_bar);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+newad.ad_id);
+        mStorageRef = FirebaseStorage.getInstance().getReference("ProfilePicture/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
         mDatabaseRef = FirebaseFirestore.getInstance();
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +70,7 @@ public class ContractUpload_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(ContractUpload_Activity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfilePhoto_Activity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile();
                 }
@@ -122,7 +108,7 @@ public class ContractUpload_Activity extends AppCompatActivity {
 
     private void uploadFile() {
         if (mImageUri != null) {
-            final StorageReference fileReference = mStorageRef.child("JobContract"
+            final StorageReference fileReference = mStorageRef.child("ProfilePic"
                     + "." + getFileExtension(mImageUri));
 
             mUploadTask = fileReference.putFile(mImageUri)
@@ -137,22 +123,22 @@ public class ContractUpload_Activity extends AppCompatActivity {
                                 }
                             }, 500);
 
-                            Toast.makeText(ContractUpload_Activity.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ProfilePhoto_Activity.this, "Upload successful", Toast.LENGTH_LONG).show();
                             fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
+                                    mAuth = FirebaseAuth.getInstance();
+                                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                    ImageStorage image = new ImageStorage(uri.toString());
+                                    db.collection("ProfilePictures").document(mAuth.getCurrentUser().getUid()).set(image);
 
+                                    Intent intent = getIntent();
+                                    Ad newad =intent.getParcelableExtra("Ad");
 
-
-                                    newad.imageurl = uri.toString();
-                                    newad.agency_id = mAuth.getUid();
-
-                                    newRef.set(newad);
-
-                                    Intent intent1 = new Intent(ContractUpload_Activity.this,Agency_home_activity.class);
+                                    Intent intent1 = new Intent(ProfilePhoto_Activity.this,Agency_home_activity.class);
                                     startActivity(intent1);
                                     finish();
-                                  //  mDatabaseRef.collection("Uploads").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Images").add(upload);
+                                    //  mDatabaseRef.collection("Uploads").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Images").add(upload);
                                 }
                             });
 
@@ -163,7 +149,7 @@ public class ContractUpload_Activity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(ContractUpload_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfilePhoto_Activity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

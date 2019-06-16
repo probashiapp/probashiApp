@@ -10,7 +10,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class Post_ad_Activity extends AppCompatActivity {
     private EditText title_et,country_et,vacancy_et,job_type_et,visa_grade_et,basic_pay_et,work_hour_et,description_et,job_security_et,package_price_et;
@@ -113,7 +117,8 @@ public class Post_ad_Activity extends AppCompatActivity {
 
                 package_price= Integer.toString(pp);
 
-                Ad newad = new Ad(title,country,vacancy,job_type,job_security,visa_grade,basic_pay,work_hour,description,package_price,"null","null","");
+                Date date = Calendar.getInstance().getTime();
+                Ad newad = new Ad(title,country,vacancy,job_type,job_security,visa_grade,basic_pay,work_hour,description,package_price,"null","null","", date);
 
                 Intent intent = new Intent(Post_ad_Activity.this,ContractUpload_Activity.class);
                 intent.putExtra("Ad",newad);

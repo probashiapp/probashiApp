@@ -3,13 +3,24 @@ package com.example.probashiapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
+
 public class Ad implements Parcelable {
-    String title,country,vacancy,job_type,job_security,visa_grade,basic_pay,work_hour,description,package_price,agency_id,ad_id,imageurl;
+    String title, country, vacancy, job_type, job_security, visa_grade, basic_pay, work_hour, description, package_price, agency_id, ad_id, imageurl;
+    Date time;
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
     public Ad() {
     }
 
-    public Ad(String title, String country, String vacancy, String job_type, String job_security, String visa_grade, String basic_pay, String work_hour, String description, String package_price, String agency_id, String ad_id, String imageurl) {
+    public Ad(String title, String country, String vacancy, String job_type, String job_security, String visa_grade, String basic_pay, String work_hour, String description, String package_price, String agency_id, String ad_id, String imageurl, Date time) {
         this.title = title;
         this.country = country;
         this.vacancy = vacancy;
@@ -23,6 +34,7 @@ public class Ad implements Parcelable {
         this.agency_id = agency_id;
         this.ad_id = ad_id;
         this.imageurl = imageurl;
+        this.time = time;
     }
 
     public String getTitle() {
@@ -147,6 +159,7 @@ public class Ad implements Parcelable {
         agency_id = in.readString();
         ad_id = in.readString();
         imageurl = in.readString();
+        time = new Date(in.readLong());
     }
 
     public static final Creator<Ad> CREATOR = new Creator<Ad>() {
@@ -160,7 +173,6 @@ public class Ad implements Parcelable {
             return new Ad[size];
         }
     };
-
 
 
     @Override
@@ -183,5 +195,6 @@ public class Ad implements Parcelable {
         parcel.writeString(agency_id);
         parcel.writeString(ad_id);
         parcel.writeString(imageurl);
+        parcel.writeLong(time.getTime());
     }
 }

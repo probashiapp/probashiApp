@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class AdDetails_Activity extends AppCompatActivity {
 
     private TextView title_tv,country_tv,vacancy_tv,jobtype_tv,visagrade_tv,basicpay_tv,workhour_tv,description_tv,jobsecurity_tv;
-    private Button seejobcontract_bt;
+    private Button seejobcontract_bt,apply_bt;
     Ad ad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class AdDetails_Activity extends AppCompatActivity {
         workhour_tv = findViewById(R.id.work_hour_tv);
         description_tv = findViewById(R.id.description_tv);
         seejobcontract_bt = findViewById(R.id.seejobcontract_bt);
+        apply_bt = findViewById(R.id.apply_bt);
 
         title_tv.setText(ad.getTitle());
         country_tv.setText(ad.getCountry());
@@ -47,6 +48,16 @@ public class AdDetails_Activity extends AppCompatActivity {
                 Intent intent1 = new Intent(AdDetails_Activity.this,ShowContract_Activity.class);
                 intent1.putExtra("Ad",ad);
                 startActivity(intent1);
+                finish();
+            }
+        });
+
+        apply_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(AdDetails_Activity.this,ProfilePhoto_Activity.class);
+                intent2.putExtra("Ad",ad);
+                startActivity(intent2);
                 finish();
             }
         });
