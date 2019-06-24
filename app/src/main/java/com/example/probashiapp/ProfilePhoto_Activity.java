@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -27,10 +29,12 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ProfilePhoto_Activity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private EditText mEditTextFileName;
     private ImageView mImageView;
     private ProgressBar mProgressBar;
 
@@ -47,12 +51,11 @@ public class ProfilePhoto_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contract_upload_);
+        setContentView(R.layout.activity_profile_photo_);
 
 
         Button mButtonChooseImage = findViewById(R.id.button_choose_image);
         Button mButtonUpload = findViewById(R.id.button_upload);
-        mEditTextFileName = findViewById(R.id.edit_text_file_name);
         mImageView = findViewById(R.id.image_view);
         mProgressBar = findViewById(R.id.progress_bar);
 
@@ -129,13 +132,16 @@ public class ProfilePhoto_Activity extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
                                     mAuth = FirebaseAuth.getInstance();
                                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                    ImageStorage image = new ImageStorage(uri.toString());
-                                    db.collection("ProfilePictures").document(mAuth.getCurrentUser().getUid()).set(image);
+
+                                    Map<String, Object> data = new HashMap<>();
+                                    data.put("profilePhoto_url", uri.toString());
+                                    db.collection("Agents").document(mAuth.getCurrentUser().getUid()).set(data, SetOptions.merge());
 
                                     Intent intent = getIntent();
                                     Ad newad =intent.getParcelableExtra("Ad");
 
-                                    Intent intent1 = new Intent(ProfilePhoto_Activity.this,Agency_home_activity.class);
+                                    Intent intent1 = new Intent(ProfilePhoto_Activity.this,NidUpload_Activity.class);
+                                    intent1.putExtra("Ad",newad);
                                     startActivity(intent1);
                                     finish();
                                     //  mDatabaseRef.collection("Uploads").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("Images").add(upload);

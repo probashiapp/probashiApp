@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Probashi_Home_Activity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button searchnewjob_bt, appliedjobs_bt, passnid_bt, logout_bt;
+    private Button searchnewjob_bt, appliedjobs_bt, uploaddocuments_bt, logout_bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +19,12 @@ public class Probashi_Home_Activity extends AppCompatActivity implements View.On
 
         searchnewjob_bt = findViewById(R.id.searchnewjobs_bt);
         appliedjobs_bt = findViewById(R.id.appliedjobs_bt);
-        passnid_bt = findViewById(R.id.passnid_bt);
+        uploaddocuments_bt = findViewById(R.id.uploaddocuments_bt);
         logout_bt = findViewById(R.id.logout_bt);
 
         searchnewjob_bt.setOnClickListener(this);
         appliedjobs_bt.setOnClickListener(this);
-        passnid_bt.setOnClickListener(this);
+        uploaddocuments_bt.setOnClickListener(this);
         logout_bt.setOnClickListener(this);
     }
 

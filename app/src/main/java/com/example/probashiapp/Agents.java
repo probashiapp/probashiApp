@@ -1,12 +1,12 @@
 package com.example.probashiapp;
 
 public class Agents {
-    String name,password,retypepassword,phone,email,address,city,nid;
+    String name,password,retypepassword,phone,email,address,city,nid,profilePhoto_url,nidPhoto_url,passportPhoto_url;
 
     public Agents() {
     }
 
-    public Agents(String name, String password, String retypepassword, String phone, String email, String address, String city, String nid) {
+    public Agents(String name, String password, String retypepassword, String phone, String email, String address, String city, String nid, String profilePhoto_url, String nidPhoto_url, String passportPhoto_url) {
         this.name = name;
         this.password = password;
         this.retypepassword = retypepassword;
@@ -15,6 +15,9 @@ public class Agents {
         this.address = address;
         this.city = city;
         this.nid = nid;
+        this.profilePhoto_url = profilePhoto_url;
+        this.nidPhoto_url = nidPhoto_url;
+        this.passportPhoto_url = passportPhoto_url;
     }
 
     public String getName() {
@@ -79,5 +82,29 @@ public class Agents {
 
     public void setNid(String nid) {
         this.nid = nid;
+    }
+
+    public String getProfilePhoto_url() {
+        return profilePhoto_url;
+    }
+
+    public void setProfilePhoto_url(String profilePhoto_url) {
+        this.profilePhoto_url = profilePhoto_url;
+    }
+
+    public String getNidPhoto_url() {
+        return nidPhoto_url;
+    }
+
+    public void setNidPhoto_url(String nidPhoto_url) {
+        this.nidPhoto_url = nidPhoto_url;
+    }
+
+    public String getPassportPhoto_url() {
+        return passportPhoto_url;
+    }
+
+    public void setPassportPhoto_url(String passportPhoto_url) {
+        this.passportPhoto_url = passportPhoto_url;
     }
 }

@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfilePhoto_Activity"></activity>
+        <activity android:name=".PassportUpload_Activity"></activity>
+        <activity
+            android:name=".NidUpload_Activity"
+            android:label="@string/title_activity_nid_upload_"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ProfilePhoto_Activity" />
         <activity android:name=".ShowContract_Activity" />
         <activity android:name=".Splash_Activity">
             <intent-filter>

@@ -103,7 +103,7 @@ public class Signup_Activity extends AppCompatActivity implements View.OnClickLi
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
 
-                            Agents agent = new Agents(name,password,retypepassword,phone,email,address,city,nid);
+                            Agents agent = new Agents(name,password,retypepassword,phone,email,address,city,nid,null,null,null);
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                             db.collection("Agents").document(mAuth.getCurrentUser().getUid()).set(agent).addOnSuccessListener(new OnSuccessListener<Void>() {

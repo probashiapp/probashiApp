@@ -4,4 +4,5 @@
         <item>Probashi</item>
         <item>Agency</item>
     </string-array>
+    <string name="title_activity_nid_upload_">NidUpload_Activity</string>
 </resources>
