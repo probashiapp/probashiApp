@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PassportUpload_Activity"></activity>
+        <activity android:name=".LiveAdsDetails_Activity"></activity>
+        <activity android:name=".LiveAds_Activity" />
+        <activity android:name=".ArchivedAds_Activity" />
+        <activity android:name=".AgentID_Activity" />
+        <activity android:name=".PassportUpload_Activity" />
         <activity
             android:name=".NidUpload_Activity"
             android:label="@string/title_activity_nid_upload_"

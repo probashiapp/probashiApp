@@ -3,10 +3,10 @@ package com.example.probashiapp;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -38,7 +38,7 @@ public class PassportUpload_Activity extends AppCompatActivity {
     private Uri mImageUri;
 
     private StorageReference mStorageRef;
-    private FirebaseFirestore mDatabaseRef;
+
 
     private StorageTask mUploadTask;
 
@@ -56,7 +56,7 @@ public class PassportUpload_Activity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.progress_bar);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Passport/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
-        mDatabaseRef = FirebaseFirestore.getInstance();
+
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +138,7 @@ public class PassportUpload_Activity extends AppCompatActivity {
                                     Intent intent = getIntent();
                                     Ad newad =intent.getParcelableExtra("Ad");
 
-                                    Intent intent1 = new Intent(PassportUpload_Activity.this,Agency_home_activity.class);
+                                    Intent intent1 = new Intent(PassportUpload_Activity.this, AgentID_Activity.class);
                                     intent1.putExtra("Ad",newad);
                                     startActivity(intent1);
                                     finish();
