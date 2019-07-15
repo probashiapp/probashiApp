@@ -1,8 +1,8 @@
 package com.example.probashiapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -36,7 +36,7 @@ public class ShowContract_Activity extends AppCompatActivity {
 
 
         GlideApp.with(this)
-                .load(ad.getImageurl())
+                .load(ad.getImageurl()).placeholder(R.drawable.placeholder).error(R.drawable.error)
                 .into(contract_pv);
     }
 }

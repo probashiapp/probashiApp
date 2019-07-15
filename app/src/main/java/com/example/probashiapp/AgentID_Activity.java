@@ -2,13 +2,18 @@ package com.example.probashiapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -21,6 +26,7 @@ public class AgentID_Activity extends AppCompatActivity implements View.OnClickL
     private FirebaseAuth mauth;
     private FirebaseFirestore db;
     private Ad newad;
+    private String agent_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +52,41 @@ public class AgentID_Activity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         if (view.getId() == apply_bt.getId()) {
 
-            String agent_id = agentid_et.getText().toString();
+            agent_id = agentid_et.getText().toString();
             if (agent_id.isEmpty()) {
                 Toast.makeText(AgentID_Activity.this, "Enter Agent_id or Select Skip.", Toast.LENGTH_LONG).show();
                 return;
             }
 
-            Date date = Calendar.getInstance().getTime();
-            Application application = new Application(newad.ad_id, agent_id, mauth.getUid(), newad.agency_id, date);
-            db.collection("Applications").add(application);
+            db.collection("Agents").document(mauth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Agents agent = task.getResult().toObject(Agents.class);
+                        Date date = Calendar.getInstance().getTime();
+                        Application application = new Application(newad.ad_id, agent_id, mauth.getUid(), newad.agency_id, agent, newad, date,false);
+                        db.collection("Applications").add(application).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(AgentID_Activity.this, "Application Succesfully submitted. Wait for the agency to contact you.", Toast.LENGTH_LONG).show();
+                                    Intent intent1 = new Intent(AgentID_Activity.this, Probashi_Home_Activity.class);
+                                    startActivity(intent1);
+                                    finish();
+                                } else {
+                                    Toast.makeText(AgentID_Activity.this, "Failed to Submit Application. Please try Again.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
 
-            Toast.makeText(AgentID_Activity.this, "Application Succesfully submitted. Wait for the agency to contact you.", Toast.LENGTH_LONG).show();
-            Intent intent1 = new Intent(AgentID_Activity.this, Probashi_Home_Activity.class);
-            startActivity(intent1);
-            finish();
+                    } else {
+                        Toast.makeText(AgentID_Activity.this, "Failed to Submit Application. Please try Again.", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+
+
         }
     }
 }

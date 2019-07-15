@@ -2,21 +2,21 @@ package com.example.probashiapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-
-import javax.annotation.Nullable;
 
 public class LiveAds_Activity extends AppCompatActivity {
 
@@ -36,40 +36,43 @@ public class LiveAds_Activity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        db.collection("Ads").whereEqualTo("agency_id", mauth.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("Ads").whereEqualTo("agency_id", mauth.getUid()).orderBy("time", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-
-                for (DocumentSnapshot dc : queryDocumentSnapshots) {
-
-
-                    Ad ad = dc.toObject(Ad.class);
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot dc : task.getResult()) {
 
 
-                    adArrayList.add(ad);
+                        Ad ad = dc.toObject(Ad.class);
 
 
-                }
-                if (adArrayList.size() > 0) {
-                    mRecyclerView = findViewById(R.id.recyclerView);
-                    mRecyclerView.setHasFixedSize(true);
-                    mLayoutManager = new LinearLayoutManager(LiveAds_Activity.this);
-                    mAdapter = new AdAdapter(adArrayList);
+                        adArrayList.add(ad);
 
-                    mRecyclerView.setLayoutManager(mLayoutManager);
-                    mRecyclerView.setAdapter(mAdapter);
 
-                    mAdapter.setOnItemClickListener(new AdAdapter.OnitemClickListener() {
-                        @Override
-                        public void onItemClick(int position) {
-                            Ad temp = adArrayList.get(position);
-                            Intent intent = new Intent(LiveAds_Activity.this, AdDetails_Activity.class);
-                            intent.putExtra("Ad", temp);
-                            startActivity(intent);
+                    }
+                    if (adArrayList.size() > 0) {
+                        mRecyclerView = findViewById(R.id.recyclerView);
+                        mRecyclerView.setHasFixedSize(true);
+                        mLayoutManager = new LinearLayoutManager(LiveAds_Activity.this);
+                        mAdapter = new AdAdapter(adArrayList);
 
-                        }
-                    });
+                        mRecyclerView.setLayoutManager(mLayoutManager);
+                        mRecyclerView.setAdapter(mAdapter);
 
+                        mAdapter.setOnItemClickListener(new AdAdapter.OnitemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+                                Ad temp = adArrayList.get(position);
+                                Intent intent = new Intent(LiveAds_Activity.this, LiveAdsDetails_Activity.class);
+                                intent.putExtra("Ad", temp);
+                                startActivity(intent);
+
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(LiveAds_Activity.this, "No Live Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     Toast.makeText(LiveAds_Activity.this, "No Live Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
                 }
@@ -77,3 +80,6 @@ public class LiveAds_Activity extends AppCompatActivity {
         });
     }
 }
+
+
+

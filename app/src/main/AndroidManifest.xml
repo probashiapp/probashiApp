@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LiveAdsDetails_Activity"></activity>
+        <activity android:name=".Contact_Activity"></activity>
+        <activity android:name=".ShowPic_Activity" />
+        <activity android:name=".ApplicantDetails_Activity" />
+        <activity android:name=".LiveAdsDetails_Activity" />
         <activity android:name=".LiveAds_Activity" />
         <activity android:name=".ArchivedAds_Activity" />
         <activity android:name=".AgentID_Activity" />

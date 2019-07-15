@@ -1,7 +1,7 @@
 package com.example.probashiapp;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +29,9 @@ public class AdAdapter extends RecyclerView.Adapter<AdAdapter.AdViewHolder> {
 
         public AdViewHolder(View itemView, final OnitemClickListener listener) {
             super(itemView);
-            title = itemView.findViewById(R.id.title_tv);
-            country = itemView.findViewById(R.id.country_tv);
-            basicpay = itemView.findViewById(R.id.basicpay_tv);
+            title = itemView.findViewById(R.id.name_tv);
+            country = itemView.findViewById(R.id.address_tv);
+            basicpay = itemView.findViewById(R.id.city_tv);
             visagrade = itemView.findViewById(R.id.visagrade_tv);
 
 

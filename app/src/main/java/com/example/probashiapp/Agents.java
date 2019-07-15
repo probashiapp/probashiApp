@@ -1,15 +1,28 @@
 package com.example.probashiapp;
 
-public class Agents {
-    String name,password,retypepassword,phone,email,address,city,nid,profilePhoto_url,nidPhoto_url,passportPhoto_url;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Agents implements Parcelable {
+    public static final Creator<Agents> CREATOR = new Creator<Agents>() {
+        @Override
+        public Agents createFromParcel(Parcel in) {
+            return new Agents(in);
+        }
+
+        @Override
+        public Agents[] newArray(int size) {
+            return new Agents[size];
+        }
+    };
 
     public Agents() {
     }
 
-    public Agents(String name, String password, String retypepassword, String phone, String email, String address, String city, String nid, String profilePhoto_url, String nidPhoto_url, String passportPhoto_url) {
+    String name, phone, email, address, city, nid, profilePhoto_url, nidPhoto_url, passportPhoto_url;
+
+    public Agents(String name, String phone, String email, String address, String city, String nid, String profilePhoto_url, String nidPhoto_url, String passportPhoto_url) {
         this.name = name;
-        this.password = password;
-        this.retypepassword = retypepassword;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -20,28 +33,24 @@ public class Agents {
         this.passportPhoto_url = passportPhoto_url;
     }
 
+    protected Agents(Parcel in) {
+        name = in.readString();
+        phone = in.readString();
+        email = in.readString();
+        address = in.readString();
+        city = in.readString();
+        nid = in.readString();
+        profilePhoto_url = in.readString();
+        nidPhoto_url = in.readString();
+        passportPhoto_url = in.readString();
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRetypepassword() {
-        return retypepassword;
-    }
-
-    public void setRetypepassword(String retypepassword) {
-        this.retypepassword = retypepassword;
     }
 
     public String getPhone() {
@@ -106,5 +115,23 @@ public class Agents {
 
     public void setPassportPhoto_url(String passportPhoto_url) {
         this.passportPhoto_url = passportPhoto_url;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(phone);
+        parcel.writeString(email);
+        parcel.writeString(address);
+        parcel.writeString(city);
+        parcel.writeString(nid);
+        parcel.writeString(profilePhoto_url);
+        parcel.writeString(nidPhoto_url);
+        parcel.writeString(passportPhoto_url);
     }
 }

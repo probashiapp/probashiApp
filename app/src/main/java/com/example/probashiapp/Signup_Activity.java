@@ -1,9 +1,9 @@
 package com.example.probashiapp;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -103,7 +103,7 @@ public class Signup_Activity extends AppCompatActivity implements View.OnClickLi
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
 
-                            Agents agent = new Agents(name,password,retypepassword,phone,email,address,city,nid,null,null,null);
+                            Agents agent = new Agents(name, phone, email, address, city, nid, null, null, null);
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                             db.collection("Agents").document(mAuth.getCurrentUser().getUid()).set(agent).addOnSuccessListener(new OnSuccessListener<Void>() {
