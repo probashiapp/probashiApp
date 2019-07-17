@@ -3,24 +3,19 @@ package com.example.probashiapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Ad implements Parcelable {
     String title, country, vacancy, job_type, job_security, visa_grade, basic_pay, work_hour, description, package_price, agency_id, ad_id, imageurl;
     Date time;
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
+    ArrayList<String> applicants ;
+    String adStatus;
 
     public Ad() {
     }
 
-    public Ad(String title, String country, String vacancy, String job_type, String job_security, String visa_grade, String basic_pay, String work_hour, String description, String package_price, String agency_id, String ad_id, String imageurl, Date time) {
+    public Ad(String title, String country, String vacancy, String job_type, String job_security, String visa_grade, String basic_pay, String work_hour, String description, String package_price, String agency_id, String ad_id, String imageurl, Date time, ArrayList<String> applicants, String adStatus) {
         this.title = title;
         this.country = country;
         this.vacancy = vacancy;
@@ -35,7 +30,39 @@ public class Ad implements Parcelable {
         this.ad_id = ad_id;
         this.imageurl = imageurl;
         this.time = time;
+        this.applicants = applicants;
+        this.adStatus = adStatus;
     }
+
+    protected Ad(Parcel in) {
+        title = in.readString();
+        country = in.readString();
+        vacancy = in.readString();
+        job_type = in.readString();
+        job_security = in.readString();
+        visa_grade = in.readString();
+        basic_pay = in.readString();
+        work_hour = in.readString();
+        description = in.readString();
+        package_price = in.readString();
+        agency_id = in.readString();
+        ad_id = in.readString();
+        imageurl = in.readString();
+        applicants = in.createStringArrayList();
+        adStatus = in.readString();
+    }
+
+    public static final Creator<Ad> CREATOR = new Creator<Ad>() {
+        @Override
+        public Ad createFromParcel(Parcel in) {
+            return new Ad(in);
+        }
+
+        @Override
+        public Ad[] newArray(int size) {
+            return new Ad[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -141,39 +168,29 @@ public class Ad implements Parcelable {
         this.imageurl = imageurl;
     }
 
-    public static Creator<Ad> getCREATOR() {
-        return CREATOR;
+    public Date getTime() {
+        return time;
     }
 
-    protected Ad(Parcel in) {
-        title = in.readString();
-        country = in.readString();
-        vacancy = in.readString();
-        job_type = in.readString();
-        job_security = in.readString();
-        visa_grade = in.readString();
-        basic_pay = in.readString();
-        work_hour = in.readString();
-        description = in.readString();
-        package_price = in.readString();
-        agency_id = in.readString();
-        ad_id = in.readString();
-        imageurl = in.readString();
-        time = new Date(in.readLong());
+    public void setTime(Date time) {
+        this.time = time;
     }
 
-    public static final Creator<Ad> CREATOR = new Creator<Ad>() {
-        @Override
-        public Ad createFromParcel(Parcel in) {
-            return new Ad(in);
-        }
+    public ArrayList<String> getApplicants() {
+        return applicants;
+    }
 
-        @Override
-        public Ad[] newArray(int size) {
-            return new Ad[size];
-        }
-    };
+    public void setApplicants(ArrayList<String> applicants) {
+        this.applicants = applicants;
+    }
 
+    public String getAdStatus() {
+        return adStatus;
+    }
+
+    public void setAdStatus(String adStatus) {
+        this.adStatus = adStatus;
+    }
 
     @Override
     public int describeContents() {
@@ -195,6 +212,7 @@ public class Ad implements Parcelable {
         parcel.writeString(agency_id);
         parcel.writeString(ad_id);
         parcel.writeString(imageurl);
-        parcel.writeLong(time.getTime());
+        parcel.writeStringList(applicants);
+        parcel.writeString(adStatus);
     }
 }

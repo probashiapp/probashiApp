@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -113,7 +114,7 @@ public class Post_ad_Activity extends AppCompatActivity {
                 package_price= Integer.toString(pp);
 
                 Date date = Calendar.getInstance().getTime();
-                Ad newad = new Ad(title,country,vacancy,job_type,job_security,visa_grade,basic_pay,work_hour,description,package_price,"null","null","", date);
+                Ad newad = new Ad(title,country,vacancy,job_type,job_security,visa_grade,basic_pay,work_hour,description,package_price,"null","null","", date,new ArrayList<String>(),"Live");
 
                 Intent intent = new Intent(Post_ad_Activity.this,ContractUpload_Activity.class);
                 intent.putExtra("Ad",newad);

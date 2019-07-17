@@ -64,10 +64,11 @@ public class AgentID_Activity extends AppCompatActivity implements View.OnClickL
                     if (task.isSuccessful()) {
                         Agents agent = task.getResult().toObject(Agents.class);
                         Date date = Calendar.getInstance().getTime();
-                        Application application = new Application(newad.ad_id, agent_id, mauth.getUid(), newad.agency_id, agent, newad, date,false);
-                        db.collection("Applications").add(application).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        String id = db.collection("Applications").document().getId();
+                        Application application = new Application(newad.ad_id, agent_id, mauth.getUid(), newad.agency_id,id, agent, newad, date,false);
+                        db.collection("Applications").document(id).set(application).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
-                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                            public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(AgentID_Activity.this, "Application Succesfully submitted. Wait for the agency to contact you.", Toast.LENGTH_LONG).show();
                                     Intent intent1 = new Intent(AgentID_Activity.this, Probashi_Home_Activity.class);
@@ -87,6 +88,36 @@ public class AgentID_Activity extends AppCompatActivity implements View.OnClickL
             });
 
 
+        }
+        else if(view.getId() == skip_bt.getId()){
+            db.collection("Agents").document(mauth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        Agents agent = task.getResult().toObject(Agents.class);
+                        Date date = Calendar.getInstance().getTime();
+                        String id = db.collection("Applications").document().getId();
+                        Application application = new Application(newad.ad_id, null, mauth.getUid(), newad.agency_id,id, agent, newad, date,false);
+                        db.collection("Applications").document(id).set(application).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(AgentID_Activity.this, "Application Succesfully submitted. Wait for the agency to contact you.", Toast.LENGTH_LONG).show();
+                                    Intent intent1 = new Intent(AgentID_Activity.this, Probashi_Home_Activity.class);
+                                    startActivity(intent1);
+                                    finish();
+                                } else {
+                                    Toast.makeText(AgentID_Activity.this, "Failed to Submit Application. Please try Again.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(AgentID_Activity.this, "Failed to Submit Application. Please try Again.", Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
         }
     }
 }

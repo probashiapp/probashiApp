@@ -53,6 +53,7 @@ public class NidUpload_Activity extends AppCompatActivity {
 
         Button mButtonChooseImage = findViewById(R.id.button_choose_image);
         Button mButtonUpload = findViewById(R.id.button_upload);
+
         mImageView = findViewById(R.id.image_view);
         mProgressBar = findViewById(R.id.progress_bar);
 
@@ -74,6 +75,20 @@ public class NidUpload_Activity extends AppCompatActivity {
                 } else {
                     uploadFile();
                 }
+            }
+        });
+
+        Button button_skip = findViewById(R.id.button_skip);
+        button_skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = getIntent();
+                Ad newad =intent.getParcelableExtra("Ad");
+
+                Intent intent1 = new Intent(NidUpload_Activity.this,PassportUpload_Activity.class);
+                intent1.putExtra("Ad",newad);
+                startActivity(intent1);
+                finish();
             }
         });
 

@@ -15,11 +15,12 @@ public class Application implements Parcelable {
     public Application() {
     }
 
-    public Application(String ad_id, String agent_id, String applicant_id, String agency_id, Agents agent, Ad ad, Date apply_time, boolean contacted) {
+    public Application(String ad_id, String agent_id, String applicant_id, String agency_id, String application_id, Agents agent, Ad ad, Date apply_time, boolean contacted) {
         this.ad_id = ad_id;
         this.agent_id = agent_id;
         this.applicant_id = applicant_id;
         this.agency_id = agency_id;
+        this.application_id = application_id;
         this.agent = agent;
         this.ad = ad;
         this.apply_time = apply_time;
@@ -31,6 +32,7 @@ public class Application implements Parcelable {
         agent_id = in.readString();
         applicant_id = in.readString();
         agency_id = in.readString();
+        application_id = in.readString();
         agent = in.readParcelable(Agents.class.getClassLoader());
         ad = in.readParcelable(Ad.class.getClassLoader());
         contacted = in.readByte() != 0;
@@ -80,6 +82,14 @@ public class Application implements Parcelable {
         this.agency_id = agency_id;
     }
 
+    public String getApplication_id() {
+        return application_id;
+    }
+
+    public void setApplication_id(String application_id) {
+        this.application_id = application_id;
+    }
+
     public Agents getAgent() {
         return agent;
     }
@@ -123,6 +133,7 @@ public class Application implements Parcelable {
         parcel.writeString(agent_id);
         parcel.writeString(applicant_id);
         parcel.writeString(agency_id);
+        parcel.writeString(application_id);
         parcel.writeParcelable(agent, i);
         parcel.writeParcelable(ad, i);
         parcel.writeByte((byte) (contacted ? 1 : 0));

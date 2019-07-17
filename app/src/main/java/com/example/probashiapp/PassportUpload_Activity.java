@@ -76,6 +76,20 @@ public class PassportUpload_Activity extends AppCompatActivity {
             }
         });
 
+        Button button_skip = findViewById(R.id.button_skip);
+        button_skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = getIntent();
+                Ad newad =intent.getParcelableExtra("Ad");
+
+                Intent intent1 = new Intent(PassportUpload_Activity.this, AgentID_Activity.class);
+                intent1.putExtra("Ad",newad);
+                startActivity(intent1);
+                finish();
+            }
+        });
+
     }
 
 
