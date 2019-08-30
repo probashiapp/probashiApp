@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RemoveAdsDetails_Activity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1de9b6"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Job Details"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Title"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/address_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Country"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_tv" />
+
+        <TextView
+            android:id="@+id/vacancy_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Vacancy"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address_tv" />
+
+        <TextView
+            android:id="@+id/job_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Job type"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vacancy_tv" />
+
+        <TextView
+            android:id="@+id/visa_grade_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Visa Grade"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/job_type_tv" />
+
+        <TextView
+            android:id="@+id/basic_pay_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Basic Pay"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/visa_grade_tv" />
+
+        <TextView
+            android:id="@+id/work_hour_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Work Hour"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/basic_pay_tv" />
+
+
+        <TextView
+            android:id="@+id/description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Description"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/work_hour_tv" />
+
+        <TextView
+            android:id="@+id/job_security_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:text="Job security"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_tv" />
+
+
+        <Button
+            android:id="@+id/archivead_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:padding="20dp"
+            android:text="Archive AD"
+            android:background="#1de9b6"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/job_security_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

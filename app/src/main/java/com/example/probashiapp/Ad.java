@@ -8,14 +8,11 @@ import java.util.Date;
 
 public class Ad implements Parcelable {
     String title, country, vacancy, job_type, job_security, visa_grade, basic_pay, work_hour, description, package_price, agency_id, ad_id, imageurl;
-    Date time;
+    Long time;
     ArrayList<String> applicants ;
     String adStatus;
 
-    public Ad() {
-    }
-
-    public Ad(String title, String country, String vacancy, String job_type, String job_security, String visa_grade, String basic_pay, String work_hour, String description, String package_price, String agency_id, String ad_id, String imageurl, Date time, ArrayList<String> applicants, String adStatus) {
+    public Ad(String title, String country, String vacancy, String job_type, String job_security, String visa_grade, String basic_pay, String work_hour, String description, String package_price, String agency_id, String ad_id, String imageurl, Long time, ArrayList<String> applicants, String adStatus) {
         this.title = title;
         this.country = country;
         this.vacancy = vacancy;
@@ -34,6 +31,9 @@ public class Ad implements Parcelable {
         this.adStatus = adStatus;
     }
 
+    public Ad() {
+    }
+
     protected Ad(Parcel in) {
         title = in.readString();
         country = in.readString();
@@ -48,6 +48,11 @@ public class Ad implements Parcelable {
         agency_id = in.readString();
         ad_id = in.readString();
         imageurl = in.readString();
+        if (in.readByte() == 0) {
+            time = null;
+        } else {
+            time = in.readLong();
+        }
         applicants = in.createStringArrayList();
         adStatus = in.readString();
     }
@@ -168,11 +173,11 @@ public class Ad implements Parcelable {
         this.imageurl = imageurl;
     }
 
-    public Date getTime() {
+    public Long getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 
@@ -212,6 +217,12 @@ public class Ad implements Parcelable {
         parcel.writeString(agency_id);
         parcel.writeString(ad_id);
         parcel.writeString(imageurl);
+        if (time == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(time);
+        }
         parcel.writeStringList(applicants);
         parcel.writeString(adStatus);
     }

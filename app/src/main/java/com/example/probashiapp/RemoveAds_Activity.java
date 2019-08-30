@@ -1,13 +1,13 @@
 package com.example.probashiapp;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +19,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class ArchivedAds_Activity extends AppCompatActivity {
+public class RemoveAds_Activity extends AppCompatActivity {
 
     FirebaseFirestore db;
     FirebaseAuth mauth = FirebaseAuth.getInstance();
@@ -30,13 +30,12 @@ public class ArchivedAds_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_archived_ads_);
-
+        setContentView(R.layout.activity_remove_ads_);
         final ArrayList<Ad> adArrayList = new ArrayList<>();
 
         db = FirebaseFirestore.getInstance();
 
-        db.collection("Ads").whereEqualTo("agency_id", mauth.getUid()).whereEqualTo("adStatus","archived").orderBy("time", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Ads").whereEqualTo("agency_id", mauth.getUid()).whereEqualTo("adStatus","Live").orderBy("time", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -53,7 +52,7 @@ public class ArchivedAds_Activity extends AppCompatActivity {
                     if (adArrayList.size() > 0) {
                         mRecyclerView = findViewById(R.id.recyclerView);
                         mRecyclerView.setHasFixedSize(true);
-                        mLayoutManager = new LinearLayoutManager(ArchivedAds_Activity.this);
+                        mLayoutManager = new LinearLayoutManager(RemoveAds_Activity.this);
                         mAdapter = new AdAdapter(adArrayList);
 
                         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -63,7 +62,7 @@ public class ArchivedAds_Activity extends AppCompatActivity {
                             @Override
                             public void onItemClick(int position) {
                                 Ad temp = adArrayList.get(position);
-                                Intent intent = new Intent(ArchivedAds_Activity.this,ArchivedAdsDetails_Activity.class);
+                                Intent intent = new Intent(RemoveAds_Activity.this, RemoveAdsDetails_Activity.class);
                                 intent.putExtra("Ad", temp);
                                 startActivity(intent);
 
@@ -71,10 +70,10 @@ public class ArchivedAds_Activity extends AppCompatActivity {
                         });
 
                     } else {
-                        Toast.makeText(ArchivedAds_Activity.this, "No Live Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RemoveAds_Activity.this, "No Live Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(ArchivedAds_Activity.this, "No Live Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RemoveAds_Activity.this, "No Live Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
                 }
             }
         });

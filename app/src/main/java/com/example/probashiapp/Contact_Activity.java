@@ -37,7 +37,7 @@ public class Contact_Activity extends AppCompatActivity {
             db.collection("Applications").document(application.getApplication_id()).set(application).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    db.collection("Ads").document(application.getAd_id()).update("applications", FieldValue.arrayUnion(application.getApplicant_id()));
+                    db.collection("Ads").document(application.getAd_id()).update("applicants", FieldValue.arrayUnion(application.getApplicant_id()));
                 }
             });
         }

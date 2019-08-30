@@ -63,7 +63,8 @@ public class AgentID_Activity extends AppCompatActivity implements View.OnClickL
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         Agents agent = task.getResult().toObject(Agents.class);
-                        Date date = Calendar.getInstance().getTime();
+                        Date temp = Calendar.getInstance().getTime();
+                        long date = temp.getTime();
                         String id = db.collection("Applications").document().getId();
                         Application application = new Application(newad.ad_id, agent_id, mauth.getUid(), newad.agency_id,id, agent, newad, date,false);
                         db.collection("Applications").document(id).set(application).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -95,7 +96,8 @@ public class AgentID_Activity extends AppCompatActivity implements View.OnClickL
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         Agents agent = task.getResult().toObject(Agents.class);
-                        Date date = Calendar.getInstance().getTime();
+                        Date temp = Calendar.getInstance().getTime();
+                        long date = temp.getTime();
                         String id = db.collection("Applications").document().getId();
                         Application application = new Application(newad.ad_id, null, mauth.getUid(), newad.agency_id,id, agent, newad, date,false);
                         db.collection("Applications").document(id).set(application).addOnCompleteListener(new OnCompleteListener<Void>() {

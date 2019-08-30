@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewAgents_Activity"></activity>
+        <activity android:name=".AppliedJobs_Activity"></activity>
+        <activity android:name=".DocumentNidUpload_Activity" />
+        <activity android:name=".DocumentPassportUpload_Activity" />
+        <activity android:name=".DocumentProfileUpload_Activity" />
+        <activity android:name=".UploadDocuments_Activity" />
+        <activity android:name=".ArchivedAdsDetails_Activity" />
+        <activity android:name=".RemoveAdsDetails_Activity" />
+        <activity android:name=".RemoveAds_Activity" />
+        <activity android:name=".NewAgents_Activity" />
         <activity android:name=".ContactedAgents_Activity" />
         <activity android:name=".Contact_Activity" />
         <activity android:name=".ShowPic_Activity" />

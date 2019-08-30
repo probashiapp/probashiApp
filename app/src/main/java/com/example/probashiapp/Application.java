@@ -9,23 +9,8 @@ public class Application implements Parcelable {
     String ad_id, agent_id, applicant_id, agency_id,application_id;
     Agents agent;
     Ad ad;
-    Date apply_time;
+    Long apply_time;
     boolean contacted;
-
-    public Application() {
-    }
-
-    public Application(String ad_id, String agent_id, String applicant_id, String agency_id, String application_id, Agents agent, Ad ad, Date apply_time, boolean contacted) {
-        this.ad_id = ad_id;
-        this.agent_id = agent_id;
-        this.applicant_id = applicant_id;
-        this.agency_id = agency_id;
-        this.application_id = application_id;
-        this.agent = agent;
-        this.ad = ad;
-        this.apply_time = apply_time;
-        this.contacted = contacted;
-    }
 
     protected Application(Parcel in) {
         ad_id = in.readString();
@@ -35,6 +20,11 @@ public class Application implements Parcelable {
         application_id = in.readString();
         agent = in.readParcelable(Agents.class.getClassLoader());
         ad = in.readParcelable(Ad.class.getClassLoader());
+        if (in.readByte() == 0) {
+            apply_time = null;
+        } else {
+            apply_time = in.readLong();
+        }
         contacted = in.readByte() != 0;
     }
 
@@ -106,11 +96,11 @@ public class Application implements Parcelable {
         this.ad = ad;
     }
 
-    public Date getApply_time() {
+    public Long getApply_time() {
         return apply_time;
     }
 
-    public void setApply_time(Date apply_time) {
+    public void setApply_time(Long apply_time) {
         this.apply_time = apply_time;
     }
 
@@ -120,6 +110,21 @@ public class Application implements Parcelable {
 
     public void setContacted(boolean contacted) {
         this.contacted = contacted;
+    }
+
+    public Application(String ad_id, String agent_id, String applicant_id, String agency_id, String application_id, Agents agent, Ad ad, Long apply_time, boolean contacted) {
+        this.ad_id = ad_id;
+        this.agent_id = agent_id;
+        this.applicant_id = applicant_id;
+        this.agency_id = agency_id;
+        this.application_id = application_id;
+        this.agent = agent;
+        this.ad = ad;
+        this.apply_time = apply_time;
+        this.contacted = contacted;
+    }
+
+    public Application() {
     }
 
     @Override
@@ -136,6 +141,12 @@ public class Application implements Parcelable {
         parcel.writeString(application_id);
         parcel.writeParcelable(agent, i);
         parcel.writeParcelable(ad, i);
+        if (apply_time == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(apply_time);
+        }
         parcel.writeByte((byte) (contacted ? 1 : 0));
     }
 }

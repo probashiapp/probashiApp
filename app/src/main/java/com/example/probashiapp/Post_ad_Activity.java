@@ -113,7 +113,8 @@ public class Post_ad_Activity extends AppCompatActivity {
 
                 package_price= Integer.toString(pp);
 
-                Date date = Calendar.getInstance().getTime();
+                Date temp = Calendar.getInstance().getTime();
+                long date = temp.getTime();
                 Ad newad = new Ad(title,country,vacancy,job_type,job_security,visa_grade,basic_pay,work_hour,description,package_price,"null","null","", date,new ArrayList<String>(),"Live");
 
                 Intent intent = new Intent(Post_ad_Activity.this,ContractUpload_Activity.class);

@@ -1,7 +1,9 @@
 package com.example.probashiapp;
 
 import android.content.Intent;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,14 +35,22 @@ public class Probashi_Home_Activity extends AppCompatActivity implements View.On
         if (view.getId() == searchnewjob_bt.getId()) {
             Intent intent = new Intent(Probashi_Home_Activity.this, ShowJobs_Activity.class);
             startActivity(intent);
-            finish();
+
         } else if (view.getId() == logout_bt.getId()) {
-
             FirebaseAuth.getInstance().signOut();
-
             Intent intent = new Intent(Probashi_Home_Activity.this, Login_Activity.class);
             startActivity(intent);
             finish();
+
+        } else if (view.getId() == appliedjobs_bt.getId()) {
+            Intent intent = new Intent(Probashi_Home_Activity.this, UploadDocuments_Activity.class);
+            startActivity(intent);
+
+        } else if (view.getId() == uploaddocuments_bt.getId()) {
+            Intent intent = new Intent(Probashi_Home_Activity.this, UploadDocuments_Activity.class);
+            startActivity(intent);
+
         }
+
     }
 }
