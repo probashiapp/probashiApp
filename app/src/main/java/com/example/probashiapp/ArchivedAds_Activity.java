@@ -71,10 +71,10 @@ public class ArchivedAds_Activity extends AppCompatActivity {
                         });
 
                     } else {
-                        Toast.makeText(ArchivedAds_Activity.this, "No Live Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ArchivedAds_Activity.this, "No Archived Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(ArchivedAds_Activity.this, "No Live Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ArchivedAds_Activity.this, "No Archived Ads found. Check your internet connection & try again.", Toast.LENGTH_LONG).show();
                 }
             }
         });

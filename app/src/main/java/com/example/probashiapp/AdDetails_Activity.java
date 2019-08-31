@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +18,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class AdDetails_Activity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView title_tv,country_tv,vacancy_tv,jobtype_tv,visagrade_tv,basicpay_tv,workhour_tv,description_tv,jobsecurity_tv;
+    private TextView title_tv,country_tv,vacancy_tv,jobtype_tv,visagrade_tv,basicpay_tv,workhour_tv,description_tv,jobsecurity_tv,packageprice_tv;
     private Button seejobcontract_bt,apply_bt;
     Ad ad;
     @Override
@@ -38,6 +40,7 @@ public class AdDetails_Activity extends AppCompatActivity implements View.OnClic
         description_tv = findViewById(R.id.description_tv);
         seejobcontract_bt = findViewById(R.id.seejobcontract_bt);
         apply_bt = findViewById(R.id.apply_bt);
+        packageprice_tv = findViewById(R.id.packageprice_tv);
 
         title_tv.setText("Title: " + ad.getTitle());
         country_tv.setText("Country: " + ad.getCountry());
@@ -48,6 +51,12 @@ public class AdDetails_Activity extends AppCompatActivity implements View.OnClic
         basicpay_tv.setText("Basic Pay: " + ad.getBasic_pay());
         workhour_tv.setText("Work Hour: " + ad.getWork_hour());
         description_tv.setText("Description: " + ad.getDescription());
+        String money = new String("৳");
+        Integer integer =Integer.parseInt(ad.package_price)/100000;
+        for(int i=1;i<integer;i++){
+            money = money+" "+money;
+        }
+        packageprice_tv.setText(Html.fromHtml("Package Price: " + "<font color=\"#ff0000\">" + money + "</font><br><br>"));
 
         seejobcontract_bt.setOnClickListener(null);
         seejobcontract_bt.setText("Checking Status...");
