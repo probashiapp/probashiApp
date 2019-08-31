@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -11,7 +12,7 @@ public class AppliedJobsDetails_Activity extends AppCompatActivity {
 
     Ad ad;
 
-    private TextView title_tv, country_tv, vacancy_tv, jobtype_tv, visagrade_tv, basicpay_tv, workhour_tv, description_tv, jobsecurity_tv;
+    private TextView title_tv, country_tv, vacancy_tv, jobtype_tv, visagrade_tv, basicpay_tv, workhour_tv, description_tv, jobsecurity_tv, packageprice_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,14 @@ public class AppliedJobsDetails_Activity extends AppCompatActivity {
         basicpay_tv = findViewById(R.id.basic_pay_tv);
         workhour_tv = findViewById(R.id.work_hour_tv);
         description_tv = findViewById(R.id.description_tv);
+        packageprice_tv = findViewById(R.id.packageprice_tv);
+
+        String money = new String("৳");
+        Integer integer =Integer.parseInt(ad.package_price)/100000;
+        for(int i=1;i<integer;i++){
+            money = money+" "+money;
+        }
+        packageprice_tv.setText(Html.fromHtml("Package Price: " + "<font color=\"#ff0000\">" + money + "</font><br><br>"));
 
 
         title_tv.setText("Title: " + ad.getTitle());
