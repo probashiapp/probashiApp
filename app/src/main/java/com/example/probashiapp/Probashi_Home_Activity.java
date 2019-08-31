@@ -43,7 +43,7 @@ public class Probashi_Home_Activity extends AppCompatActivity implements View.On
             finish();
 
         } else if (view.getId() == appliedjobs_bt.getId()) {
-            Intent intent = new Intent(Probashi_Home_Activity.this, UploadDocuments_Activity.class);
+            Intent intent = new Intent(Probashi_Home_Activity.this, AppliedJobs_Activity.class);
             startActivity(intent);
 
         } else if (view.getId() == uploaddocuments_bt.getId()) {

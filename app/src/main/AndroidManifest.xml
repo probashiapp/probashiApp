@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AppliedJobs_Activity"></activity>
+        <activity android:name=".AppliedJobsDetails_Activity"></activity>
+        <activity android:name=".AppliedJobs_Activity" />
         <activity android:name=".DocumentNidUpload_Activity" />
         <activity android:name=".DocumentPassportUpload_Activity" />
         <activity android:name=".DocumentProfileUpload_Activity" />
